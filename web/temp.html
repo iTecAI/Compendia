@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- External Sources -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Internal Sources -->
+    <script src="s/libraries/sha256.min.js"></script>
+    <link rel="stylesheet" href="s/styles/root.css">
+    <script src="s/scripts/root.js"></script>
+
+</head>
+
+<body>
+
+    <div id='header' class='noselect shadow'>
+        <span class='material-icons'>photo_album</span>
+        <span class='title'>Compendia</span>
+        <button class='login'>Log In</button>
+    </div>
+    <div id='login-dialog' class='noselect'>
+        <span class='styled-input icon-input username'>
+            <span class='material-icons'>account_circle</span>
+            <input placeholder="Username">
+        </span>
+        <span class='styled-input icon-input password'>
+            <span class='material-icons'>password</span>
+            <input placeholder="Password" type="password">
+        </span>
+        <button class='finish shadow-sm'>
+            <span class='material-icons'>login</span>
+        </button>
+    </div>
+    <div id='page-content' class='noscroll'>
+
+    </div>
+</body>
+
+</html>

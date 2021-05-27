@@ -1,0 +1,187 @@
+:root {
+    --background-light: #4f5b62;
+    --background: #263238;
+    --background-dark: #000a12;
+    --background-text: #ffffff;
+    --background-subtext: #ffffff66;
+
+    --main-dark: #000070;
+    --main: #4527a0;
+    --main-light: #7953d2;
+    --text: #ffffff;
+    --subtext: #ffffff66;
+
+    --highlight1: #b388ff;
+}
+.shadow {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5); 
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+}
+
+.shadow-sm {
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5); 
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+}
+
+.noscroll::-webkit-scrollbar {
+    display: none;
+}
+.noscroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+button:focus, input:focus, select:focus, textarea:focus {
+    outline: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+body {
+    overflow: hidden;
+}
+
+html {
+    padding: 0px;
+    background-color: var(--background);
+}
+
+#header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    height: 5vh;
+    background-color: var(--background-dark);
+    color: var(--background-text);
+    border-bottom: 2px solid var(--highlight1);
+    box-sizing: border-box;
+}
+#header * {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+#header .material-icons {
+    left: 5px;
+}
+#header .title {
+    left: 34px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+#header .login {
+    background-color: var(--main);
+    font-family: 'Roboto', sans-serif;
+    right: 5px;
+    height: 4vh;
+    width: 120px;
+    border-radius: 2vh;
+    color: var(--background-text);
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    border: 2px solid var(--main);
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+#header .login:hover {
+    border-color: var(--main-dark);
+}
+
+#login-dialog {
+    position: absolute;
+    top: calc(5vh - 2px);
+    right: 5px;
+    border-radius: 0px 0px 5px 5px;
+    background-color: var(--background-dark);
+    color: var(--background-text);
+    border: 2px solid var(--highlight1);
+    border-top: none;
+    display: inline-block;
+    width: 200px;
+    height: fit-content;
+    padding-bottom: 5px;
+    z-index: 100;
+}
+#login-dialog input {
+    background-color: var(--background);
+    color: var(--background-text);
+    border: 1px solid var(--main);
+    border-radius: 5px;
+}
+#login-dialog button {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    margin-left: 20px;
+    height: 34px;
+    width: calc(100% - 40px);
+    border-radius: 17px;
+    background-color: var(--main);
+    border: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    border: 2px solid var(--main);
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+#login-dialog button:hover {
+    border-color: var(--main-dark);
+}
+#login-dialog button .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+
+.styled-input.icon-input {
+    position: relative;
+    display: inline-block;
+    width: calc(100% - 10px);
+    margin: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 32px;
+}
+.styled-input.icon-input .material-icons {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 102;
+    color: var(--subtext);
+}
+.styled-input.icon-input input {
+    padding-left: 34px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 34px;
+    z-index: 101;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+#page-content {
+    position: absolute;
+    top: 5vh;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    height: calc(100% - 5vh);
+    overflow-y: scroll;
+    z-index: 1;
+}
