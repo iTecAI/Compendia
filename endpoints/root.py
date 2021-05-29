@@ -9,10 +9,15 @@ router = APIRouter()
 @router.get('/status')
 async def get_client_status(request: Request, response: Response):
     client: Client = SERVER.clients.get(request.state.fingerprint)
+    if client.login:
+        userupdate = SERVER.users.get(client.login).check_update()
+    else:
+        userupdate = False
     return {
         'updates': {
             'client': client.check_update(),
-            'user': condition(client.login, SERVER.users.get(client.login).check_update(), False)
+            'user': userupdate,
+            'articles': {i: SERVER.articles.get(i).check_update() for i in SERVER.articles.get('')}
         },
         'fingerprint': client.fingerprint,
         'login': client.login,

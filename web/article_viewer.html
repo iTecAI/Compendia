@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compendia</title>
+    <title>Compendia - Articles</title>
 
     <!-- External Sources -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,11 +16,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <!-- Internal Sources -->
-    <script src="s/libraries/sha256.min.js"></script>
-    <link rel="stylesheet" href="s/styles/root.css">
-    <script src="s/scripts/root.js"></script>
-    <link rel="stylesheet" href="s/styles/index.css">
-    <script src="s/scripts/index.js"></script>
+    <script src="../s/libraries/sha256.min.js"></script>
+    <link rel="stylesheet" href="../s/styles/root.css">
+    <script src="../s/scripts/root.js"></script>
+    <link rel="stylesheet" href="../s/styles/article.css">
+    <script src="../s/scripts/article.js"></script>
 
 </head>
 
@@ -45,30 +45,28 @@
         </button>
     </div>
     <div id='page-content' class='noscroll'>
-        <div id='recent-bar' class='shadow noscroll'>
-            <div id='recent-container'></div>
+        <div id='article-top-bar' class='shadow noselect'>
+            <span class='material-icons title-icon'>description</span>
+            <input type="text" class='title-input' placeholder="New Article">
+            <span class='material-icons tag-icon'>local_offer</span>
+            <span class='tag-area'></span>
+            <input type="text" class='tag-input' list='tag-list-select' placeholder="Add Tag">
+            
+            <datalist id='tag-list-select'></datalist>
         </div>
-        <div id='all-objects' class='noscroll'>
-            <div class='object-search noselect shadow'>
-                <span class='material-icons'>search</span>
-                <input type="text" placeholder="Search" class='search-query'>
-                <span class='material-icons'>local_offer</span>
-                <select name="tags" class="search-tag-select">
-                    <option value="$no-tags">No Filter</option>
-                </select>
-            </div>
-            <div id='object-area' class='noscroll noselect'></div>
+        <button id='edit-toggle' class='noselect shadow'>
+            <span class='material-icons'>edit</span>
+        </button>
+        <div id='article-page' class='shadow'>
+
         </div>
-        <div id='new-obj-button' class='noselect shadow'>
-            <div class='obj-types'>
-                <button class='obj-button article'>
-                    <span class='material-icons'>description</span>
-                </button>
-                <button class='obj-button map'>
-                    <span class='material-icons'>map</span>
-                </button>
+        <div id='headers' class="noselect">
+            <div class='header-title shadow'>
+                <span class='material-icons'>text_fields</span>
+                <span class='title'>Headers</span>
             </div>
-            <span class='material-icons'>add</span>
+            <div class='headers-area noscroll noselect'></div>
+            <div class='header-fade'></div>
         </div>
     </div>
 </body>

@@ -12,7 +12,7 @@ class Server:
             os.makedirs(pformat(self.config.get('database.path')+f'/{root}'), exist_ok=True)
         
         self.clients = DBAccess(pformat(self.config.get('database.path')+'/clients'), indent=4)
-        self.articles = DBAccess(pformat(self.config.get('database.path')+'/objects'), indent=4)
+        self.articles = DBAccess(pformat(self.config.get('database.path')+'/articles'), indent=4)
         self.maps = DBAccess(pformat(self.config.get('database.path')+'/maps'), indent=4)
         self.users = DBAccess(pformat(self.config.get('database.path')+'/users'), indent=4)
 

@@ -182,6 +182,20 @@ html {
     display: inline-block;
     width: 100%;
     height: calc(100% - 5vh);
-    overflow-y: scroll;
+    overflow: hidden;
     z-index: 1;
+}
+
+.scroll1::-webkit-scrollbar {
+    width: 5px;
+}
+.scroll1::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+.scroll1::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 2.5px;
+}
+.scroll1::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
 }

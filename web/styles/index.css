@@ -4,19 +4,20 @@
     left: 0px;
     display: inline-block;
     width: 100%;
-    height: 345px;
+    height: 200px;
     background-color: var(--background-light);
+    z-index: 20;
 }
 
 #all-objects {
     position: absolute;
-    top: 360px;
+    top: 215px;
     left: 0px;
-    overflow-y: scroll;
     display: inline-block;
     width: 100%;
-    height: calc(95vh - 360px);
+    height: calc(95vh - 215px);
     padding: 5px;
+    z-index: 18;
 }
 
 #new-obj-button {
@@ -32,6 +33,7 @@
     transition: height 0.2s;
     overflow: hidden;
     cursor: pointer;
+    z-index: 100;
 }
 #new-obj-button:hover {
     height: calc(48px * 3);
@@ -67,4 +69,203 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#recent-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+    font-family: 'Roboto', sans-serif;
+    z-index: 20;
+}
+#recent-container .no-recents {
+    color: var(--subtext);
+}
+
+#all-objects .object-search {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    height: 32px;
+    width: 100%;
+    background-color: var(--background-dark);
+    z-index: inherit;
+    box-sizing: border-box;
+}
+#all-objects .object-search input {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    box-sizing: border-box;
+    display: inline-block;
+    width: calc(80% - 4px);
+    height: 28px;
+    border: none;
+    background-color: var(--background-light);
+    border-radius: 4px;
+    padding-left: 30px;
+    font-size: 16px;
+    color: var(--background-text);
+    z-index: 19;
+}
+#all-objects .object-search select {
+    position: absolute;
+    top: 2px;
+    right: 12px;
+    box-sizing: border-box;
+    display: inline-block;
+    width: calc(20% - 12px);
+    height: 28px;
+    border: none;
+    background-color: var(--background-light);
+    border-radius: 4px;
+    padding-left: 30px;
+    font-size: 16px;
+    color: var(--background-text);
+    z-index: 19;
+}
+#all-objects .object-search .material-icons:first-of-type {
+    position: absolute;
+    top: 50%;
+    left: 9px;
+    transform: translate(0, -50%);
+    color: var(--background-text);
+    z-index: 20;
+    font-size: 18px;
+}
+#all-objects .object-search .material-icons:last-of-type {
+    position: absolute;
+    top: 50%;
+    left: calc(80% + 9px);
+    transform: translate(0, -50%);
+    color: var(--background-text);
+    z-index: 20;
+    font-size: 18px;
+}
+#object-area {
+    position: absolute;
+    top: 32px;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    height: calc(100% - 32px);
+    overflow: scroll;
+    padding: 5px;
+}
+
+#object-area .object-item {
+    position: relative;
+    display: inline-block;
+    height: 320px;
+    width: 220px;
+    overflow: hidden;
+}
+#recent-container .object-item {
+    position: relative;
+    display: inline-block;
+    height: 180px;
+    width: 150px;
+    overflow: hidden;
+}
+.object-item {
+    background-color: var(--background);
+    border-radius: 5px;
+    border: 2px solid var(--highlight1);
+}
+.object-item .thumbnail {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    height: calc(78% - 5px);
+    background-color: var(--background-dark);
+    pointer-events: none;
+}
+.object-item .description {
+    position: absolute;
+    top: 78%;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    height: 22%;
+    background-color: var(--background-light);
+}
+.object-item .description .object-type-icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--background-text);
+}
+.object-item .description .object-name {
+    position: absolute;
+    top: 6px;
+    left: 34px;
+    color: var(--background-text);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+.object-item .description .tag-icon {
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    color: var(--background-text);
+}
+.object-item .description .tag-list {
+    position: absolute;
+    top: 38px;
+    left: 34px;
+    display: inline-block;
+    width: calc(100% - 44px);
+    height: 28px;
+    background-color: var(--background);
+    padding: 4px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+.object-item .description .tag-list .tag-item {
+    position: relative;
+    display: inline;
+    padding: 2px;
+    margin-right: 4px;
+    border-radius: 2px;
+    background-color: var(--background-light);
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: var(--background-text);
+}
+.object-item .edit-obj-button {
+    position: absolute;
+    right: 5px;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--main-light);
+    border: none;
+    transition: background-color 0.2s;
+    color: var(--text);
+    cursor: pointer;
+}
+.object-item .edit-obj-button:hover {
+    background-color: var(--main);
+}
+.object-item .edit-obj-button.set-visibility {
+    top: 5px;
+}
+.object-item .edit-obj-button.delete {
+    top: 42px;
+}
+.object-item .edit-obj-button .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
 }

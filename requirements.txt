@@ -2,4 +2,5 @@ fastapi
 starlette
 uvicorn
 aiofiles
-pyyaml
+markdown2
+bs4

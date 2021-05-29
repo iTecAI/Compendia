@@ -41,17 +41,28 @@ function post(url, parameters, body, success, failure) {
     });
 }
 
+function get_cookies() {
+    var str = document.cookie;
+    str = str.split(', ');
+    var result = {};
+    for (var i = 0; i < str.length; i++) {
+        var cur = str[i].split('=');
+        result[cur[0]] = cur[1];
+    }
+    return result;
+}
+
 function root_update(data, force) {
     localStorage.login = data.login;
     localStorage.recent = JSON.stringify(data.recent);
 
     $('#header .login').text(condition(localStorage.login != 'null' && localStorage, 'Log Out', 'Log In'));
 
-    local_update(data, force);
-}
-
-function local_update(data, force) {
-    // Override in page-specific files.
+    try {
+        local_update(data, force);
+    } catch {
+        
+    }
 }
 
 $(document).ready(function () {

@@ -4,7 +4,7 @@ import json, os, time, copy, threading, shutil
 from .util import *
 
 class BaseObject:
-    def __init__(self, db=None, path=None, update_timeout=0.25, **kwargs):
+    def __init__(self, db=None, path=None, update_timeout=0.45, **kwargs):
         self.kwargs = kwargs
         if '_update_' in self.kwargs.keys():
             self._update_ = self.kwargs['_update_']
@@ -116,7 +116,7 @@ class DBAccess:
                     del self.cache[c]
             time.sleep(2)
 
-    def __init__(self, top, allowed_exts=['.json', '.ini', '.cfg'], indent=None, cache_timeout=30):
+    def __init__(self, top, allowed_exts=['.json', '.ini', '.cfg'], indent=None, cache_timeout=2):
         self.top = pformat(top)
         self.allowed_exts = allowed_exts
         self.indent = indent
@@ -202,10 +202,13 @@ class DBAccess:
     def set(self, path, value):
         if issubclass(type(value), BaseObject):
             value = value.to_dict()
-        self.cache[path] = {
-            'value': copy.deepcopy(value),
-            'last_update': time.time()
-        }
+        if '' in self.cache.keys():
+            del self.cache['']
+        c = path.split('.')[0]
+        for p in path.split('.'):
+            if c in self.cache.keys():
+                del self.cache[c]
+            c += '.'+p
         parts = path.split('.')
         for p in range(1, len(parts)+1):
             if '.'.join(parts[:p]) in self.cache.keys():
@@ -265,8 +268,13 @@ class DBAccess:
             f.write(json.dumps(j_loaded, indent=self.indent))
 
     def delete(self, path):
-        if path in self.cache.keys():
-            del self.cache[path]
+        if '' in self.cache.keys():
+            del self.cache['']
+        c = path.split('.')[0]
+        for p in path.split('.'):
+            if c in self.cache.keys():
+                del self.cache[c]
+            c += '.'+p
         parts = path.split('.')
         if not os.path.isfile(self.top):
             top = self.top+''
@@ -345,10 +353,33 @@ class User(BaseObject):
         self.kwargs = DefaultsDict(self.kwargs, {
             'id': generate_fingerprint(full=True),
             'username': '$required',
-            'objects': {},
-            'current_client': '$required'
+            'current_client': '$required',
+            'editable_objects': []
         })
         self.id = self.kwargs['id']
         self.username = self.kwargs['username']
-        self.objects = self.kwargs['objects']
         self.current_client = self.kwargs['current_client']
+        self.editable_objects = self.kwargs['editable_objects']
+
+class Article(BaseObject):
+    def __init__(self, db=None, path=None, update_timeout=0.25, **kwargs):
+        super().__init__(db=db, path=path, update_timeout=update_timeout, **kwargs)
+        self.__base_object_type__ = 'Article'
+        self.kwargs = DefaultsDict(self.kwargs, {
+            'id': generate_fingerprint(),
+            'name': 'New Article',
+            'thumbnail': None,
+            'markdown_content': '',
+            'html_content': '',
+            'tags': [],
+            'public': False,
+            'heading_ids': []
+        })
+        self.id = self.kwargs['id']
+        self.name = self.kwargs['name']
+        self.thumbnail = self.kwargs['thumbnail']
+        self.tags = self.kwargs['tags']
+        self.public = self.kwargs['public']
+        self.markdown_content = self.kwargs['markdown_content']
+        self.html_content = self.kwargs['html_content']
+        self.heading_ids = self.kwargs['heading_ids']
