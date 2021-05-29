@@ -1,9 +1,9 @@
 var ARTICLE = get_cookies().ARTICLE_ID;
+
 var EDITING = false;
 var EDITS = 0;
 
 function update_article(result, force) {
-    console.log(result);
     $('#article-top-bar .title-input').val(result.name);
     $('#article-top-bar .title-input').toggleClass('editable', result.editable);
     $('#article-top-bar .title-input').attr('disabled', !result.editable);
@@ -42,7 +42,7 @@ function update_article(result, force) {
         var item = $('<a class="heading-item"></a>')
         item.text(header.text);
         item.attr('data-id', header.id);
-        item.css('padding-left', 10 * header.level - 10);
+        item.css('padding-left', 10 * header.level + 24);
         item.on('click', function (event) {
             var target = $('#'+$(this).attr('data-id'));
             if (target.length) {
@@ -52,6 +52,13 @@ function update_article(result, force) {
                 return false;
             }
         });
+        item.append(
+            $('<button class="copy-link"></button>')
+                .append($('<span class="material-icons">insert_link</span>'))
+                .on('click', function () {
+                    copyTextToClipboard(location.origin+'/article/'+ARTICLE+'?goto='+$(this).parents('.heading-item').attr('data-id'));
+                })
+        );
 
         header_list.append(item);
     }
@@ -68,7 +75,6 @@ function update_taglist(result) {
 
 function local_update(result, force) {
     if (result.updates.client || result.updates.user || force == true || result.updates.articles[ARTICLE]) {
-        console.log(result);
         get('/api/objects/articles/' + ARTICLE, {}, function (result) {
             update_article(result, force);
         }).fail(function () {
@@ -109,4 +115,15 @@ $(document).ready(function () {
             post('/api/objects/articles/' + ARTICLE + '/set_content', {}, { content: $('#article-page')[0].innerText });
         }
     }, 500);
+
+    var params = parseParams();
+    if (Object.keys(params).includes('goto')) {
+        var target = $('#'+params.goto);
+        if (target.length) {
+            $('#article-page').animate({
+                scrollTop: target.offset().top
+            }, 300);
+            return false;
+        }
+    }
 });

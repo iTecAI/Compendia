@@ -6,11 +6,11 @@ function get(url, parameters, success, failure) {
     var parameters = condition(parameters, parameters, {});
 
     if (!localStorage.fingerprint) {
-        localStorage.fingerprint = sha256((Date.now()+Math.random()).toString());
+        localStorage.fingerprint = sha256((Date.now() + Math.random()).toString());
     }
 
     return $.ajax({
-        url: url+'?'+$.param(parameters),
+        url: url + '?' + $.param(parameters),
         method: 'GET',
         success: success,
         failure: failure,
@@ -26,11 +26,11 @@ function post(url, parameters, body, success, failure) {
     var parameters = condition(parameters, parameters, {});
 
     if (!localStorage.fingerprint) {
-        localStorage.fingerprint = sha256((Date.now()+Math.random()).toString());
+        localStorage.fingerprint = sha256((Date.now() + Math.random()).toString());
     }
 
     return $.ajax({
-        url: url+'?'+$.param(parameters),
+        url: url + '?' + $.param(parameters),
         method: 'POST',
         success: success,
         failure: failure,
@@ -61,7 +61,7 @@ function root_update(data, force) {
     try {
         local_update(data, force);
     } catch {
-        
+
     }
 }
 
@@ -97,8 +97,8 @@ $(document).ready(function () {
             username: uname,
             hashword: passw
         }).fail(function (result) {
-            console.error('Login error '+result.status+' '+result.responseJSON.reason);
-            alert('Failed to login: '+result.responseJSON.reason);
+            console.error('Login error ' + result.status + ' ' + result.responseJSON.reason);
+            alert('Failed to login: ' + result.responseJSON.reason);
         });
         $('.login').trigger('click');
     });
@@ -106,3 +106,48 @@ $(document).ready(function () {
         root_update(result, true);
     });
 });
+
+function parseParams() {
+    var parts = window.location.search.slice(1).split('&');
+    var mapping = {};
+    for (var p of parts) {
+        var _p = p.split('=');
+        mapping[_p[0]] = _p[1];
+    }
+    return mapping;
+}
+
+function fallbackCopyTextToClipboard(text) {
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+
+    // Avoid scrolling to bottom
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Fallback: Copying text command was ' + msg);
+    } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
+}
+function copyTextToClipboard(text) {
+    if (!navigator.clipboard) {
+        fallbackCopyTextToClipboard(text);
+        return;
+    }
+    navigator.clipboard.writeText(text).then(function () {
+        console.log('Async: Copying to clipboard was successful!');
+    }, function (err) {
+        console.error('Async: Could not copy text: ', err);
+    });
+}

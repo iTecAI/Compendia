@@ -230,6 +230,21 @@
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
+    position: relative;
+}
+#headers .headers-area .heading-item button {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translate(0, -50%);
+    background-color: #00000000;
+    color: var(--background-text);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+#headers .headers-area .heading-item button:hover {
+    opacity: 0.8;
 }
 #headers .header-fade {
     position: absolute;
