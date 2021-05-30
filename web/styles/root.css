@@ -64,6 +64,7 @@ html {
     color: var(--background-text);
     border-bottom: 2px solid var(--highlight1);
     box-sizing: border-box;
+    z-index: 40;
 }
 #header * {
     position: absolute;
@@ -72,11 +73,13 @@ html {
 }
 #header .material-icons {
     left: 5px;
+    cursor: pointer;
 }
 #header .title {
     left: 34px;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
+    cursor: pointer;
 }
 #header .login {
     background-color: var(--main);

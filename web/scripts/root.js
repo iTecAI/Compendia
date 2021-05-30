@@ -105,6 +105,9 @@ $(document).ready(function () {
     get('/api/status', {}, function (result) {
         root_update(result, true);
     });
+    $('#header span').on('click', function () {
+        window.location.pathname = '/';
+    })
 });
 
 function parseParams() {
@@ -150,4 +153,13 @@ function copyTextToClipboard(text) {
     }, function (err) {
         console.error('Async: Could not copy text: ', err);
     });
+}
+
+function target_member_of(target, selectors) {
+    for (var s of selectors) {
+        if ($(target).is(s) || $(target).parents(s).length > 0) {
+            return true;
+        }
+    }
+    return false;
 }

@@ -17,7 +17,8 @@ async def get_client_status(request: Request, response: Response):
         'updates': {
             'client': client.check_update(),
             'user': userupdate,
-            'articles': {i: SERVER.articles.get(i).check_update() for i in SERVER.articles.get('')}
+            'articles': {i: SERVER.articles.get(i).check_update() for i in SERVER.articles.get('')},
+            'maps': {i: SERVER.maps.get(i).check_update() for i in SERVER.maps.get('')}
         },
         'fingerprint': client.fingerprint,
         'login': client.login,

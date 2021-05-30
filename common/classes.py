@@ -372,7 +372,7 @@ class Article(BaseObject):
             'markdown_content': '',
             'html_content': '',
             'tags': [],
-            'public': False,
+            'public': True,
             'heading_ids': []
         })
         self.id = self.kwargs['id']
@@ -383,3 +383,26 @@ class Article(BaseObject):
         self.markdown_content = self.kwargs['markdown_content']
         self.html_content = self.kwargs['html_content']
         self.heading_ids = self.kwargs['heading_ids']
+
+class Map(BaseObject):
+    def __init__(self, db=None, path=None, update_timeout=0.25, **kwargs):
+        super().__init__(db=db, path=path, update_timeout=update_timeout, **kwargs)
+        self.__base_object_type__ = 'Map'
+        self.kwargs = DefaultsDict(self.kwargs, {
+            'id': generate_fingerprint(),
+            'name': 'New Map',
+            'thumbnail': None,
+            'tags': [],
+            'public': True,
+            'map_data': '$required',
+            'objects': {},
+            'image_id': '$required'
+        })
+        self.id = self.kwargs['id']
+        self.name = self.kwargs['name']
+        self.thumbnail = self.kwargs['thumbnail']
+        self.tags = self.kwargs['tags']
+        self.public = self.kwargs['public']
+        self.map_data = self.kwargs['map_data']
+        self.objects = self.kwargs['objects']
+        self.image_id = self.kwargs['image_id']

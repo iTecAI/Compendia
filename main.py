@@ -50,4 +50,17 @@ async def get_article_page(request: Request, aid: str):
     response = FileResponse(pformat('web/article_viewer.html'), media_type='text/html')
     response.set_cookie('ARTICLE_ID', aid, path=f'/article/{aid}', httponly=False, samesite='strict')
     return response
-    
+
+@app.get('/map/{mid}')
+async def get_map_page(request: Request, mid: str):
+    response = FileResponse(pformat('web/wmap_viewer.html'), media_type='text/html')
+    response.set_cookie('MAP_ID', mid, path=f'/map/{mid}', httponly=False, samesite='strict')
+    return response
+
+@app.get('/images/{iid}')
+async def get_image(response: Response, iid: str):
+    for i in os.listdir(os.path.join(SERVER.config.get('database.path'), 'images')):
+        if os.path.splitext(i)[0] == iid:
+            return FileResponse(os.path.join(SERVER.config.get('database.path'), 'images', i))
+    response.status_code = 404
+    return

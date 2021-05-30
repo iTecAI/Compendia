@@ -1,21 +1,10 @@
-#recent-bar {
-    position: absolute;
-    top: 15px;
-    left: 0px;
-    display: inline-block;
-    width: 100%;
-    height: 200px;
-    background-color: var(--background-light);
-    z-index: 20;
-}
-
 #all-objects {
     position: absolute;
-    top: 215px;
+    top: 0px;
     left: 0px;
     display: inline-block;
     width: 100%;
-    height: calc(95vh - 215px);
+    height: 95vh;
     padding: 5px;
     z-index: 18;
 }
@@ -69,21 +58,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-#recent-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: inline-block;
-    width: fit-content;
-    height: fit-content;
-    font-family: 'Roboto', sans-serif;
-    z-index: 20;
-}
-#recent-container .no-recents {
-    color: var(--subtext);
 }
 
 #all-objects .object-search {
@@ -165,17 +139,12 @@
     width: 220px;
     overflow: hidden;
 }
-#recent-container .object-item {
-    position: relative;
-    display: inline-block;
-    height: 180px;
-    width: 150px;
-    overflow: hidden;
-}
 .object-item {
     background-color: var(--background);
     border-radius: 5px;
     border: 2px solid var(--highlight1);
+    margin-right: 5px;
+    cursor: pointer;
 }
 .object-item .thumbnail {
     position: absolute;
@@ -268,4 +237,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 20px;
+}
+
+#map-file-selector {
+    display: none;
 }
